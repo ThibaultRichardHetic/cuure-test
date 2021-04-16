@@ -1,0 +1,67 @@
+// //
+// // Functions
+@function percent($elem, $container: 1152) {
+  @return #{(($elem * 100) / $container) + "%"};
+}
+
+
+// //
+// // Responsive
+
+$bp: (
+  xs: 0,
+  s: 375px,
+  sm: 576px,
+  md: 768px,
+  med: 980px,
+  lg: 1050px,
+  xl: 1441px,
+  fullhd: 1920px,
+  5k: 2000px
+) !default;
+
+
+@function bp($name) {
+  @return map-get($bp, $name);
+}
+
+@function bp-next($name) {
+  $breakpoint-names: map-keys($bp);
+  $n: index($breakpoint-names, $name);
+
+  @return if($n != null and $n < length($breakpoint-names), bp(nth($breakpoint-names, $n + 1)) - 1, null);
+}
+
+@mixin mq-up($breakpoint) {
+  @media screen and (min-width: bp($breakpoint)) {
+    @content;
+  }
+}
+
+@mixin mq-down($breakpoint) {
+  @media screen and (max-width: bp($breakpoint)) {
+    @content;
+  }
+}
+
+@mixin mq-only($breakpoint) {
+  @media screen and (min-width: bp($breakpoint)) and (max-width: bp-next($breakpoint)) {
+    @content;
+  }
+}
+
+/*
+    Mixins examples
+
+    @include mq-up(sm) {
+
+    }
+
+    @include mq-down(xl) {
+
+    }
+
+    @include mq-only(md) {
+
+    }
+*/
