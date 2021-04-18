@@ -1,21 +1,21 @@
 <template>
   <div id="app">
-    <Header/>
+    <!-- <Header/>
     <nav>
       <router-link to="/login">Login</router-link>
       <router-link to="/register">Register</router-link>
       <router-link to="/secret">Secret</router-link>
-    </nav>
+    </nav> -->
     <router-view/>
   </div>
 </template>
 
 <script>
-import Header from "@/components/03_organisms/Header";
+// import Header from "@/components/03_organisms/Header";
 
 export default {
   components: {
-    Header
+    // Header
   }
 };
 </script>

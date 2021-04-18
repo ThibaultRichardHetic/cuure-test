@@ -1,0 +1,12 @@
+.link--default {
+  text-decoration: none;
+  font-family: "Dm Sans", "Work Sans", sans-serif;
+  color: var(--blue-n2);
+  font-size: 1.6rem;
+  transition: all .4s;
+
+  &:hover {
+    cursor: pointer;
+    color: var(--blue-n1);
+  }
+}

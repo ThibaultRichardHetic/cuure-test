@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`${page}`" class="tempostyle" :class="`link--${type}`">
+  <router-link :to="`${to}`" :class="`link--${type}`">
     <slot />
   </router-link>
 </template>
@@ -10,9 +10,9 @@ export default {
   props: {
     type: {
       type: String,
-      default:'a',
+      default:'default',
     },
-    page: {
+    to: {
       type: String,
       default: '/',
     }

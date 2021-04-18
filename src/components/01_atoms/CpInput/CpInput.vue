@@ -1,5 +1,5 @@
 <template>
-    <input :class="`input--${type}`" :type="`${type}`" :placeholder="`${placeholder}`">
+    <input :class="`input--${attribute}`" :type="`${type}`" :placeholder="`${placeholder}`">
 </template>
 
 
@@ -11,6 +11,10 @@ export default {
     type: {
       type: String,
       default: 'text',
+    },
+    attribute: {
+      type: String,
+      default: 'default'
     },
     placeholder: {
       type: String,

@@ -1,28 +1,37 @@
 <template>
   <div class="page--login">
-    <h1>Login</h1>
-    <form @submit.prevent="pressed">
-      <div class="login">
-        <input type="email" placeholder="login" v-model="email">
+    <CpText tag="h1" type="title">Connexion</CpText>
+    <form class="login__form" @submit.prevent="pressed">
+      <div class="container">
+        <CpText tag="label" type="label">Email</CpText>
+        <CpInput type="email" placeholder="Email@mail.com" v-model="email"/>
       </div>
-      <div class="password">
-        <input type="password" placeholder="password" v-model="password">
+      <div class="container">
+        <CpText tag="label" type="label">Mot de passe</CpText>
+        <CpInput type="password" placeholder="Password" v-model="password"/>
       </div>
-      <button type="submit">Login</button>
+      <button class="button" type="submit">Connexion</button>
     </form>
     <div class="error" v-if="error">{{error.message}}</div>
-    <span>
-      Need an account? Click here to
-      <router-link to="/register">register</router-link>
-    </span>
+    <CpText tag="p" type="main">Vous n'avez pas encore de compte ?</CpText>
+    <CpLink to="/register">Créer un compte.</CpLink>
   </div>
 </template>
 
 <script>
+import CpInput from "@/components/01_atoms/CpInput/CpInput";
+import CpText from "@/components/01_atoms/CpText/CpText";
+import CpLink from "@/components/01_atoms/CpLink/CpLink";
+
 import firebase from "firebase";
 import "firebase/auth";
 
 export default {
+  components: {
+    CpInput,
+    CpText,
+    CpLink
+  },
   data() {
     return {
       email: "",

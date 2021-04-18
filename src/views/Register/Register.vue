@@ -1,27 +1,42 @@
 <template>
   <div class="page--register">
-    <h1>Register</h1>
+    <CpText tag="h1" type="title">Création de compte</CpText>
+
     <div v-if="error" class="error">{{error.message}}</div>
-    <form @submit.prevent="pressed">
-      <div class="name">
-        <input type="text" v-model="name" placeholder="name">
+    <form class="register__form" @submit.prevent="pressed">
+      <div class="container">
+        <CpText tag="label" type="label">Prénom</CpText>
+        <CpInput type="text" placeholder="Juliette" v-model="name"/>
       </div>
-      <div class="email">
-        <input type="email" v-model="email" placeholder="email">
+      <div class="container">
+        <CpText tag="label" type="label">Email</CpText>
+        <CpInput type="email" placeholder="Email@mail.com" v-model="email"/>
       </div>
-      <div class="password">
-        <input type="password" v-model="password" placeholder="password">
+      <div class="container">
+        <CpText tag="label" type="label">Mot de passe</CpText>
+        <CpInput type="password" placeholder="Password" v-model="password"/>
       </div>
-      <button type="submit">Register</button>
+      <button class="button" type="submit">Register</button>
     </form>
+    <CpText tag="p" type="main">Vous avez déjà un compte ?</CpText>
+    <CpLink to="/login">Connexion.</CpLink>
   </div>
 </template>
 
 <script>
+import CpInput from "@/components/01_atoms/CpInput/CpInput";
+import CpText from "@/components/01_atoms/CpText/CpText";
+import CpLink from "@/components/01_atoms/CpLink/CpLink";
+
 import firebase from "firebase";
 import "firebase/auth";
 
 export default {
+  components: {
+    CpInput,
+    CpText,
+    CpLink
+  },
   data() {
     return {
       name: "",
