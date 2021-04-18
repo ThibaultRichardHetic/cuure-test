@@ -1,3 +1,13 @@
-.home {
-  overflow: hidden;
+.page--home {
+
+  .container--cards {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 16px;
+    position: relative;
+
+    .container--card {
+      margin-bottom: 24px;
+    }
+  }
 }

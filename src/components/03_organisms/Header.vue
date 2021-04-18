@@ -1,11 +1,11 @@
 <template>
   <div class="container--header">
     Header
-    <span v-if="loggedIn">Yes</span>
+    <span v-if="loggedIn">Yes {{name}}</span>
     <span v-else>No</span>
-    <div>
+    <!-- <div>
       <button @click="signOut">Sign out</button>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -19,16 +19,12 @@ export default {
   created() {
     firebase.auth().onAuthStateChanged(user => {
       this.loggedIn = !!user;
-      // if(user) {
-      //   this.loggedIn = true;
-      // } else {
-      //   this.logged = false
-      // }
     });
   },
   data() {
     return {
-      loggedIn: false
+      loggedIn: false,
+      name: firebase.auth().currentUser.displayName
     };
   },
   methods: {
@@ -47,4 +43,7 @@ export default {
 
 <style lang="scss">
 // @import "./Header.scss"
+* {
+  color: red;
+}
 </style>
