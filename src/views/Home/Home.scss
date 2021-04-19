@@ -12,6 +12,32 @@
     }
   }
 
+  .container--pagination {
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+
+    .pagination__chevron {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:last-of-type {
+        img {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
   .container--popup {
     position: absolute;
     width: 100%;

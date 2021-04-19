@@ -42,10 +42,7 @@ export default {
   methods: {
     async pressed() {
       try {
-        const val = firebase
-          .auth()
-          .signInWithEmailAndPassword(this.email, this.password);
-        console.log(val);
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password);
         this.$router.replace({ name: "secret" });
       } catch (err) {
         console.log(err);

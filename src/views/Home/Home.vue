@@ -2,7 +2,21 @@
   <div class="page--home">
     <CpText tag="h1" type="title">Home</CpText>
     <div class="container--cards">
-      <Card @click.native="popOpen(item)" v-for="item in items" :content="item" :key="item.idMeal"/>
+      <Card
+        @click.native="popOpen(item)"
+        v-for="item in allItems.slice((actuPage-1) * perPage, actuPage * perPage)"
+        :content="item"
+        :key="item.idMeal"
+      />
+    </div>
+    <div class="container--pagination">
+      <div class="pagination__chevron" @click="pageDown">
+        <img src="@/assets/images/chevron.svg" alt>
+      </div>
+      <CpText tag="p" type="main">{{actuPage}}/{{nbPages}}</CpText>
+      <div class="pagination__chevron" @click="pageUp">
+        <img src="@/assets/images/chevron.svg" alt>
+      </div>
     </div>
     <div v-if="popupDisplay" class="container--popup">
       <Popup :content="popupContent"/>
@@ -32,6 +46,10 @@ export default {
       text: "test",
       info: null,
       items: [],
+      allItems: [],
+      actuPage: 1,
+      nbPages: 5,
+      perPage: 5,
       loading: true,
       popupContent: null,
       popupDisplay: false
@@ -43,22 +61,32 @@ export default {
         .get("https://www.themealdb.com/api/json/v1/1/random.php")
         .then(response => {
           this.info = response.data.meals[0];
-          this.items.push(this.info);
+          this.allItems.push(this.info);
         })
         .catch(err => {
           console.log(err);
         })
         .finally(() => (this.loading = false));
     };
-    for (let index = 0; index <= 4; index++) {
+    for (let index = 0; index < this.nbPages * this.perPage; index++) {
       callApi();
     }
+    this.items = this.allItems.slice(0, 6);
   },
   methods: {
     popOpen: function(item) {
-      console.log(item);
       this.popupDisplay = true;
       this.popupContent = item;
+    },
+    pageUp: function() {
+      if (this.actuPage < 5) {
+        this.actuPage++;
+      }
+    },
+    pageDown: function() {
+      if (this.actuPage > 1) {
+        this.actuPage--;
+      }
     }
   }
 };
