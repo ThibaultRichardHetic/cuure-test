@@ -1,14 +1,13 @@
 <template>
   <div class="container--card">
-    <div class="card__image">
-      <img :src="src" alt>
-    </div>
     <div class="card__content">
-      <CpText tag="p" type="main">{{name}}</CpText>
-      <CpText
-        tag="p"
-        type="card"
-      >{{description.slice(0,75)}} ...</CpText>
+      <div class="card__image">
+        <img :src="src" alt>
+      </div>
+      <div class="card__text">
+        <CpText tag="p" type="main">{{name}}</CpText>
+        <CpText tag="p" type="card">{{description.slice(0,70)}} ...</CpText>
+      </div>
     </div>
   </div>
 </template>
@@ -31,7 +30,7 @@ export default {
     content: {
       type: Object
     }
-  }
+  },
 };
 </script>
 
