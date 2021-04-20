@@ -1,11 +1,13 @@
 <template>
   <div class="container--header">
-    Header
-    <span v-if="loggedIn">Yes {{name}}</span>
-    <span v-else>No</span>
-    <!-- <div>
-      <button @click="signOut">Sign out</button>
-    </div> -->
+    <nav class="header__nav">
+      <CpLink type="header" to="/">Home</CpLink>
+      <CpLink type="header" to="/login">Login</CpLink>
+    </nav>
+    <div v-if="loggedIn" class="header__welcom">
+      <CpText type="white">Hello {{name}}</CpText>
+      <button class="button--small" @click="signOut">Sign out</button>
+    </div>
   </div>
 </template>
 
@@ -13,9 +15,15 @@
 import firebase from "firebase";
 import "firebase/auth";
 
+import CpText from "@/components/01_atoms/CpText/CpText";
+import CpLink from "@/components/01_atoms/CpLink/CpLink";
+
 export default {
   name: "Header",
-  components: {},
+  components: {
+    CpText,
+    CpLink
+  },
   created() {
     firebase.auth().onAuthStateChanged(user => {
       this.loggedIn = !!user;
@@ -42,8 +50,5 @@ export default {
 </script>
 
 <style lang="scss">
-// @import "./Header.scss"
-* {
-  color: red;
-}
+@import "./Header.scss";
 </style>

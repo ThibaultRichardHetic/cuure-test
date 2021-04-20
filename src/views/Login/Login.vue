@@ -1,25 +1,23 @@
 <template>
   <div class="page--login">
-    <CpText tag="h1" type="title">Connexion</CpText>
+    <CpText tag="h1" type="title">Login</CpText>
     <form class="login__form" @submit.prevent="pressed">
       <div class="container">
         <CpText tag="label" type="label">Email</CpText>
-        <CpInput type="email" placeholder="Email@mail.com" v-model="email"/>
+        <input class="input--default" type="email" placeholder="Email@mail.com" v-model="email">
       </div>
       <div class="container">
-        <CpText tag="label" type="label">Mot de passe</CpText>
-        <CpInput type="password" placeholder="Password" v-model="password"/>
+        <CpText tag="label" type="label">Password</CpText>
+        <input class="input--default" type="password" placeholder="Password" v-model="password">
       </div>
-      <button class="button" type="submit">Connexion</button>
+      <button class="button" type="submit">Login</button>
     </form>
-    <div class="error" v-if="error">{{error.message}}</div>
-    <CpText tag="p" type="main">Vous n'avez pas encore de compte ?</CpText>
-    <CpLink to="/register">Créer un compte.</CpLink>
+    <CpText tag="p" type="main">Do not have an account yet?</CpText>
+    <CpLink to="/register">Create an account.</CpLink>
   </div>
 </template>
 
 <script>
-import CpInput from "@/components/01_atoms/CpInput/CpInput";
 import CpText from "@/components/01_atoms/CpText/CpText";
 import CpLink from "@/components/01_atoms/CpLink/CpLink";
 
@@ -28,7 +26,6 @@ import "firebase/auth";
 
 export default {
   components: {
-    CpInput,
     CpText,
     CpLink
   },
@@ -36,14 +33,13 @@ export default {
     return {
       email: "",
       password: "",
-      error: ""
     };
   },
   methods: {
     async pressed() {
       try {
         firebase.auth().signInWithEmailAndPassword(this.email, this.password);
-        this.$router.replace({ name: "secret" });
+        this.$router.push("/");
       } catch (err) {
         console.log(err);
       }
