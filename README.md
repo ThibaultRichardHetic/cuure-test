@@ -1,6 +1,6 @@
-# Hetic - H4 - Project product design 
+# Cuure test
 
-Louis Vuitton app promotion
+Simple site with random recipe cards featured on the home. And the possibility to create an account, to connect, to disconnect.
 
 
 ## Getting Started
@@ -15,7 +15,7 @@ npm i
 
 Used when you are developing
 ```python
-npm run dev
+npm run serve
 ```
 
 

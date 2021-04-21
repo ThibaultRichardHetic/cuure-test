@@ -24,23 +24,30 @@ export default {
     CpText,
     CpLink
   },
+  data() {
+    return {
+      loggedIn: false,
+      name: ""
+    };
+  },
   created() {
     firebase.auth().onAuthStateChanged(user => {
       this.loggedIn = !!user;
     });
   },
-  data() {
-    return {
-      loggedIn: false,
-      name: firebase.auth().currentUser.displayName
-    };
+  watch: {
+    loggedIn: function(val) {
+      if (val) {
+        this.name = firebase.auth().currentUser.displayName;
+      }
+    }
   },
   methods: {
     async signOut() {
       try {
         const data = firebase.auth().signOut();
         console.log(data);
-        this.$router.replace({ name: "login" });
+        this.$router.push("/login");
       } catch (err) {
         console.log(err);
       }
